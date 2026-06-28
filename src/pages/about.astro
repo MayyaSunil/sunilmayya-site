@@ -1,0 +1,47 @@
+---
+import AboutHeroImage from '../assets/blog-placeholder-about.jpg';
+import Layout from '../layouts/BlogPost.astro';
+---
+
+<Layout
+	title="About"
+	description="Sunil Mayya — software engineer at Mozilla, working on Firefox."
+	pubDate={new Date('June 28 2026')}
+	heroImage={AboutHeroImage}
+>
+	<p>
+		I'm Sunil Mayya, a software engineer at Mozilla working on Firefox —
+		primarily the web platform, networking, and media. Day to day that means
+		implementing web-platform features in Gecko and taking part in the standards
+		conversations (WICG, IETF, W3C) that shape them.
+	</p>
+
+	<p>
+		A lot of my recent work sits at the boundary between the browser and the
+		network: things like
+		<a href="https://wicg.github.io/local-network-access/">Local Network Access</a>,
+		HTTP caching, and the media stack. I enjoy the parts of the job that don't
+		make it into the release notes — the design tradeoffs, the cross-vendor
+		disagreements, and the implementation details you only discover once you try
+		to ship the thing.
+	</p>
+
+	<p>
+		I write here about that work — browser internals and web standards explained
+		from the inside. Away from the editor I spend a fair bit of time in the
+		kitchen, so you'll also find cooking recipes here, alongside the occasional
+		post about life in general.
+	</p>
+
+	<p>
+		You can reach me at <a href="mailto:smayya@mozilla.com">smayya@mozilla.com</a>.
+		I do most of my work in the open; you'll find my contributions on
+		<a href="https://bugzilla.mozilla.org/">Bugzilla</a> and across Mozilla's
+		<a href="https://github.com/mozilla">GitHub</a>.
+	</p>
+
+	<p>
+		<em>The opinions on this site are my own and don't necessarily represent
+		those of Mozilla.</em>
+	</p>
+</Layout>
