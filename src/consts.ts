@@ -15,7 +15,7 @@ export const SECTIONS = [
 		category: 'technical',
 		title: 'Workbench',
 		description:
-			"What I'm building and thinking about at Mozilla — browser internals, networking, and web standards, explained from the inside.",
+			"What I'm building and thinking about at Mozilla: browser internals, networking, and web standards, explained from the inside.",
 	},
 	{
 		slug: 'recipes',
@@ -29,6 +29,6 @@ export const SECTIONS = [
 		category: 'banter',
 		title: 'Banter',
 		description:
-			'Life in general — family, Nuremberg, and whatever else happens to be on my mind.',
+			'Life in general: family, Nuremberg, and whatever else happens to be on my mind.',
 	},
 ] as const;

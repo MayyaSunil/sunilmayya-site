@@ -25,7 +25,7 @@ const { section, posts } = Astro.props;
 <!doctype html>
 <html lang="en">
 	<head>
-		<BaseHead title={`${section.title} — ${SITE_TITLE}`} description={section.description} />
+		<BaseHead title={`${section.title} | ${SITE_TITLE}`} description={section.description} />
 		<style>
 			main {
 				width: 720px;
@@ -71,7 +71,7 @@ const { section, posts } = Astro.props;
 			</div>
 			{
 				posts.length === 0 ? (
-					<p class="empty">Nothing here just yet — check back soon.</p>
+					<p class="empty">Nothing here just yet. Check back soon.</p>
 				) : (
 					<ul>
 						{posts.map((post) => (

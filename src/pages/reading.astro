@@ -4,7 +4,7 @@ import Footer from '../components/Footer.astro';
 import Header from '../components/Header.astro';
 import { SITE_TITLE } from '../consts';
 
-// Books I'm currently reading. Add entries here — `author` and `note` are optional.
+// Books I'm currently reading. Add entries here. `author` and `note` are optional.
 // Example:
 //   { title: 'The Pragmatic Programmer', author: 'Hunt & Thomas', note: 'Re-reading.' },
 const currentlyReading: { title: string; author?: string; note?: string }[] = [];
@@ -13,7 +13,7 @@ const currentlyReading: { title: string; author?: string; note?: string }[] = []
 <!doctype html>
 <html lang="en">
 	<head>
-		<BaseHead title={`Reading — ${SITE_TITLE}`} description="Books I'm currently reading." />
+		<BaseHead title={`Reading | ${SITE_TITLE}`} description="Books I'm currently reading." />
 		<style>
 			main {
 				width: 720px;
@@ -56,7 +56,7 @@ const currentlyReading: { title: string; author?: string; note?: string }[] = []
 			</div>
 			{
 				currentlyReading.length === 0 ? (
-					<p class="empty">Between books at the moment — check back soon.</p>
+					<p class="empty">Between books at the moment. Check back soon.</p>
 				) : (
 					<ul>
 						{currentlyReading.map((book) => (
