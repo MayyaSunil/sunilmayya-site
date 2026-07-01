@@ -11,9 +11,9 @@ export const AUTHOR_EMAIL = 'sunilmayya@gmail.com';
 // each section gets its own listing page at `/<slug>`.
 export const SECTIONS = [
 	{
-		slug: 'field-notes',
+		slug: 'workbench',
 		category: 'technical',
-		title: 'Field Notes',
+		title: 'Workbench',
 		description:
 			"What I'm building and thinking about at Mozilla — browser internals, networking, and web standards, explained from the inside.",
 	},
