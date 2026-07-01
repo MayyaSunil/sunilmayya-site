@@ -1,0 +1,93 @@
+---
+import { getCollection } from 'astro:content';
+import BaseHead from '../components/BaseHead.astro';
+import Footer from '../components/Footer.astro';
+import FormattedDate from '../components/FormattedDate.astro';
+import Header from '../components/Header.astro';
+import { SECTIONS, SITE_TITLE } from '../consts';
+
+export async function getStaticPaths() {
+	const posts = await getCollection('blog');
+	return SECTIONS.map((section) => ({
+		params: { section: section.slug },
+		props: {
+			section,
+			posts: posts
+				.filter((post) => post.data.category === section.category)
+				.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()),
+		},
+	}));
+}
+
+const { section, posts } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead title={`${section.title} — ${SITE_TITLE}`} description={section.description} />
+		<style>
+			main {
+				width: 720px;
+				max-width: calc(100% - 2em);
+			}
+			.intro {
+				margin-bottom: 2rem;
+			}
+			ul {
+				list-style: none;
+				margin: 0;
+				padding: 0;
+			}
+			li {
+				margin-bottom: 1.5rem;
+			}
+			li a {
+				text-decoration: none;
+				color: rgb(var(--black));
+			}
+			li a:hover .title {
+				color: rgb(var(--accent));
+			}
+			.title {
+				margin: 0;
+			}
+			.date {
+				margin: 0;
+				color: rgb(var(--gray));
+			}
+			.empty {
+				color: rgb(var(--gray));
+				font-style: italic;
+			}
+		</style>
+	</head>
+	<body>
+		<Header />
+		<main>
+			<div class="intro">
+				<h1>{section.title}</h1>
+				<p>{section.description}</p>
+			</div>
+			{
+				posts.length === 0 ? (
+					<p class="empty">Nothing here just yet — check back soon.</p>
+				) : (
+					<ul>
+						{posts.map((post) => (
+							<li>
+								<a href={`/blog/${post.id}/`}>
+									<h3 class="title">{post.data.title}</h3>
+									<p class="date">
+										<FormattedDate date={post.data.pubDate} />
+									</p>
+								</a>
+							</li>
+						))}
+					</ul>
+				)
+			}
+		</main>
+		<Footer />
+	</body>
+</html>

@@ -1,19 +1,63 @@
 ---
+import { Image } from 'astro:assets';
+import profileImage from '../assets/profile.jpg';
 import BaseHead from '../components/BaseHead.astro';
 import Footer from '../components/Footer.astro';
 import Header from '../components/Header.astro';
-import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
+import { AUTHOR_EMAIL, SECTIONS, SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 ---
 
 <!doctype html>
 <html lang="en">
 	<head>
 		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+		<style>
+			.hero {
+				display: flex;
+				align-items: center;
+				gap: 1.5rem;
+				margin-bottom: 1.5rem;
+			}
+			.hero img {
+				border-radius: 50%;
+				width: 120px;
+				height: 120px;
+				object-fit: cover;
+				flex-shrink: 0;
+			}
+			.hero h1 {
+				margin: 0;
+			}
+			.sections {
+				list-style: none;
+				padding: 0;
+				margin: 2rem 0 0;
+			}
+			.sections li {
+				margin-bottom: 1rem;
+			}
+			.sections a {
+				font-weight: 700;
+			}
+			.sections p {
+				margin: 0.15rem 0 0;
+				color: rgb(var(--gray));
+			}
+			@media (max-width: 720px) {
+				.hero {
+					flex-direction: column;
+					text-align: center;
+				}
+			}
+		</style>
 	</head>
 	<body>
 		<Header />
 		<main>
-			<h1>Hi, I'm Sunil Mayya 👋</h1>
+			<div class="hero">
+				<Image src={profileImage} alt="Sunil Mayya" width={240} height={240} />
+				<h1>Hi, I'm Sunil Mayya 👋</h1>
+			</div>
 			<p>
 				I'm a software engineer at Mozilla working on Firefox — primarily the
 				web platform and networking. Day to day that means implementing
@@ -34,16 +78,25 @@ import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 				implementation details you only discover once you try to ship the thing.
 			</p>
 			<p>
-				I write here about that work — browser internals and web standards
-				explained from the inside. Away from the editor I spend a fair bit of
-				time in the kitchen, so you'll also find cooking recipes here, alongside
-				the occasional post about life in general.
+				This site is a bit of a mix — browser engineering, cooking, and notes on
+				life. Read a bit more <a href="/about/">about me</a>, or say hello at
+				<a href={`mailto:${AUTHOR_EMAIL}`}>{AUTHOR_EMAIL}</a>.
 			</p>
-			<p>
-				Have a look at the <a href="/blog/">blog</a>, read a bit more
-				<a href="/about/">about me</a>, or say hello at
-				<a href="mailto:smayya@mozilla.com">smayya@mozilla.com</a>.
-			</p>
+
+			<ul class="sections">
+				{
+					SECTIONS.map((section) => (
+						<li>
+							<a href={`/${section.slug}`}>{section.title}</a>
+							<p>{section.description}</p>
+						</li>
+					))
+				}
+				<li>
+					<a href="/reading">Reading</a>
+					<p>What's on my nightstand right now.</p>
+				</li>
+			</ul>
 		</main>
 		<Footer />
 	</body>

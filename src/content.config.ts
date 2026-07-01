@@ -14,6 +14,8 @@ const blog = defineCollection({
 			pubDate: z.coerce.date(),
 			updatedDate: z.coerce.date().optional(),
 			heroImage: z.optional(image()),
+			// Which site section this post belongs to.
+			category: z.enum(['technical', 'recipes', 'banter']).default('technical'),
 		}),
 });
 

@@ -1,0 +1,75 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Footer from '../components/Footer.astro';
+import Header from '../components/Header.astro';
+import { SITE_TITLE } from '../consts';
+
+// Books I'm currently reading. Add entries here — `author` and `note` are optional.
+// Example:
+//   { title: 'The Pragmatic Programmer', author: 'Hunt & Thomas', note: 'Re-reading.' },
+const currentlyReading: { title: string; author?: string; note?: string }[] = [];
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead title={`Reading — ${SITE_TITLE}`} description="Books I'm currently reading." />
+		<style>
+			main {
+				width: 720px;
+				max-width: calc(100% - 2em);
+			}
+			.intro {
+				margin-bottom: 2rem;
+			}
+			ul {
+				list-style: none;
+				margin: 0;
+				padding: 0;
+			}
+			li {
+				margin-bottom: 1.25rem;
+			}
+			.title {
+				margin: 0;
+				font-weight: 700;
+			}
+			.author {
+				margin: 0;
+				color: rgb(var(--gray));
+			}
+			.note {
+				margin: 0.25rem 0 0;
+			}
+			.empty {
+				color: rgb(var(--gray));
+				font-style: italic;
+			}
+		</style>
+	</head>
+	<body>
+		<Header />
+		<main>
+			<div class="intro">
+				<h1>Currently Reading</h1>
+				<p>A running list of the books on my nightstand right now.</p>
+			</div>
+			{
+				currentlyReading.length === 0 ? (
+					<p class="empty">Between books at the moment — check back soon.</p>
+				) : (
+					<ul>
+						{currentlyReading.map((book) => (
+							<li>
+								<p class="title">{book.title}</p>
+								{book.author && <p class="author">{book.author}</p>}
+								{book.note && <p class="note">{book.note}</p>}
+							</li>
+						))}
+					</ul>
+				)
+			}
+		</main>
+		<Footer />
+	</body>
+</html>
